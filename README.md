@@ -87,6 +87,8 @@ The MICS-6814 module is mapped to the ESP32-C3 Mini as follows:
   - This sketch reads raw sensor values.
   - Raw values are useful for testing and trend observation.
   - They are not direct gas concentration values in ppm.
+  ## 6. Schematic layout
+  [See file](https://github.com/0mollo/3-Mini-MICS-6814-Gas-Sensor-Piggyback/blob/main/MICS-6814%20Gas%20sensor.pdf)
  
   ### Arduino Test Code
 [See](https://github.com/0mollo/3-Mini-MICS-6814-Gas-Sensor-Piggyback/blob/main/Arduino%20Test%20Code.docx)
