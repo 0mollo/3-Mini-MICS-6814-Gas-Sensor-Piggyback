@@ -1,5 +1,5 @@
 # 3-Mini-MICS-6814-Gas-Sensor-Piggyback
-![image alt](https://github.com/0mollo/3-Mini-MICS-6814-Gas-Sensor-Piggyback/blob/main/MICS%206814%20Top%20View.png) ![image alt]()
+![image alt](https://github.com/0mollo/3-Mini-MICS-6814-Gas-Sensor-Piggyback/blob/main/MICS%206814%20Top%20View.png) ![image alt](https://github.com/0mollo/3-Mini-MICS-6814-Gas-Sensor-Piggyback/blob/main/MICS%206814%20Bottom%20View.png)
 
 Interfacing the **MICS-6814 Triple MOS Gas Sensor Module** with the **ESP32-C3 Mini**.
 
