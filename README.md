@@ -90,5 +90,58 @@ The MICS-6814 module is mapped to the ESP32-C3 Mini as follows:
   ## 6. Schematic layout
   [See file](https://github.com/0mollo/3-Mini-MICS-6814-Gas-Sensor-Piggyback/blob/main/MICS-6814%20Gas%20sensor.pdf)
  
-  ### Arduino Test Code
-[See](https://github.com/0mollo/3-Mini-MICS-6814-Gas-Sensor-Piggyback/blob/main/Arduino%20Test%20Code.docx)
+ ## 7. Arduino Test Code
+
+
+## Also include this `software/arduino/MICS6814_Basic_Test/MICS6814_Basic_Test.ino`
+
+```cpp
+/*
+  MICS-6814 Basic Test for ESP32-C3 Mini
+
+  Pin Mapping:
+  CO   -> GPIO4
+  NH3  -> GPIO0
+  NO2  -> GPIO1
+  VCC  -> 5V
+  GND  -> GND
+
+  This sketch reads raw values from the sensor channels.
+  These values are useful for testing and observing change.
+  They are not calibrated ppm values.
+*/
+
+const int PIN_CO  = 4;
+const int PIN_NH3 = 0;
+const int PIN_NO2 = 1;
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+
+  analogReadResolution(12);
+
+  Serial.println();
+  Serial.println("====================================");
+  Serial.println("MICS-6814 Gas Sensor Basic Test");
+  Serial.println("ESP32-C3 Mini");
+  Serial.println("CO   -> GPIO4");
+  Serial.println("NH3  -> GPIO0");
+  Serial.println("NO2  -> GPIO1");
+  Serial.println("====================================");
+}
+
+void loop() {
+  int coValue  = analogRead(PIN_CO);
+  int nh3Value = analogRead(PIN_NH3);
+  int no2Value = analogRead(PIN_NO2);
+
+  Serial.print("CO: ");
+  Serial.print(coValue);
+  Serial.print(" | NH3: ");
+  Serial.print(nh3Value);
+  Serial.print(" | NO2: ");
+  Serial.println(no2Value);
+
+  delay(1000);
+}
