@@ -1,1 +1,124 @@
 # 3-Mini-MICS-6814-Gas-Sensor-Piggyback
+
+
+Interfacing the **MICS-6814 Triple MOS Gas Sensor Module** with the **ESP32-C3 Mini**.
+
+This repository is intended to help anyone, including a complete beginner, understand:
+
+- what this piggyback does
+- how to connect it
+- how to power it
+- how to test it
+- where it can be used
+- what software is required
+
+
+
+## 1. Overview
+
+The **MICS-6814** is a **triple MOS gas sensor** module commonly used to observe the presence or variation of gases such as:
+
+- **Carbon Monoxide (CO)**
+- **Ammonia (NH₃)**
+- **Nitrogen Dioxide (NO₂)**
+
+This piggyback PCB adapts the module neatly to the **ESP32-C3 Mini**, making the wiring cleaner, more reliable, and easier to reproduce.
+
+The board is designed so that the three gas output channels from the sensor module are brought directly to the selected GPIO pins of the **C3-Mini**.
+
+
+
+## 2. Board Identity
+
+- **Board Name:** C3-Mini MICS-6814 Gas Sensor Piggyback
+- **Version:** V1.1
+- **Target Controller:** ESP32-C3 Mini
+- **Sensor Module:** MICS-6814 Triple MOS Gas Sensor Module
+
+
+
+## 3. What This Piggyback Does
+
+This piggyback board:
+
+- provides a compact mounting arrangement for the MICS-6814 module
+- maps the module outputs to the ESP32-C3 Mini
+- simplifies prototyping and testing
+- reduces loose jumper wiring
+- makes documentation and reuse easier
+
+It is especially useful for:
+
+- hardware prototyping
+- sensor testing
+- educational projects
+- air quality experiments
+- embedded systems demonstrations
+
+
+
+## 4. Pin Mapping
+
+The MICS-6814 module is mapped to the ESP32-C3 Mini as follows:
+
+| MICS-6814 Module Pin | Function | ESP32-C3 Mini Pin |
+|---|---|---|
+| +5V | Power input | 5V |
+| GND | Ground | GND |
+| CO | Carbon Monoxide output | GPIO4 |
+| NH3 | Ammonia output | GPIO0 |
+| NO2 | Nitrogen Dioxide output | GPIO1 |
+
+
+
+## 5. Connection Summary
+
+### Sensor to ESP32-C3 Mini
+
+- `+5V  -> 5V`
+- `GND  -> GND`
+- `CO   -> GPIO4`
+- `NH3  -> GPIO0`
+- `NO2  -> GPIO1`
+
+
+
+  Notes:
+  - This sketch reads raw sensor values.
+  - Raw values are useful for testing and trend observation.
+  - They are not direct gas concentration values in ppm.
+*/
+
+const int PIN_CO  = 4;
+const int PIN_NH3 = 0;
+const int PIN_NO2 = 1;
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+
+  analogReadResolution(12);   // ESP32 ADC range: 0 - 4095
+
+  Serial.println("====================================");
+  Serial.println("MICS-6814 Gas Sensor Basic Test");
+  Serial.println("Board: ESP32-C3 Mini");
+  Serial.println("Reading CO, NH3, and NO2 channels");
+  Serial.println("====================================");
+}
+
+void loop() {
+  int coValue  = analogRead(PIN_CO);
+  int nh3Value = analogRead(PIN_NH3);
+  int no2Value = analogRead(PIN_NO2);
+
+  Serial.print("CO: ");
+  Serial.print(coValue);
+
+  Serial.print(" | NH3: ");
+  Serial.print(nh3Value);
+
+  Serial.print(" | NO2: ");
+  Serial.println(no2Value);
+
+  delay(1000);
+}
